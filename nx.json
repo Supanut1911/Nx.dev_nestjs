@@ -25,6 +25,9 @@
   "projects": {
     "todos": {
       "tags": []
+    },
+    "coffees": {
+      "tags": []
     }
   }
 }

@@ -59,6 +59,65 @@
           }
         }
       }
+    },
+    "coffees": {
+      "root": "apps/coffees",
+      "sourceRoot": "apps/coffees/src",
+      "projectType": "application",
+      "prefix": "coffees",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/coffees",
+            "main": "apps/coffees/src/main.ts",
+            "tsConfig": "apps/coffees/tsconfig.app.json",
+            "assets": [
+              "apps/coffees/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/coffees/src/environments/environment.ts",
+                  "with": "apps/coffees/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "coffees:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/coffees/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/coffees"
+          ],
+          "options": {
+            "jestConfig": "apps/coffees/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
