@@ -5,4 +5,9 @@ export class AppService {
   getData(): { message: string } {
     return { message: 'Welcome to coffees!' };
   }
+
+  getTest() {
+    return 'test message'
+  }
 }
+

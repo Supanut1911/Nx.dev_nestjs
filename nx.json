@@ -28,6 +28,9 @@
     },
     "coffees": {
       "tags": []
+    },
+    "client": {
+      "tags": []
     }
   }
 }

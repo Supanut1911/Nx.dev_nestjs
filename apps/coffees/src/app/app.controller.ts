@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
 
 import { AppService } from './app.service';
 
@@ -6,8 +7,8 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
+  @MessagePattern('getTest')
   getData() {
-    return this.appService.getData();
+    return this.appService.getTest();
   }
 }
