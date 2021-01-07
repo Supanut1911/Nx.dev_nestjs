@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/coffees',
     '<rootDir>/apps/client',
     '<rootDir>/libs/data',
+    '<rootDir>/libs/auth',
   ],
 };

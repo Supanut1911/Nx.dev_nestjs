@@ -2,11 +2,6 @@ import { Injectable } from '@nestjs/common';
 
 import { Coffee } from 'libs/data/src/lib/data'
 
-// type Coffee = {
-//   name: string,
-//   price: number
-// }
-
 let coffees: Coffee[] = [
   {
     name: "Mocha",
