@@ -1,9 +1,4 @@
-export function data(): string {
-  return 'data';
-}
-
-
-export type Coffee = {
-  name: string,
+export class Coffee {
+  name: string
   price: number
 }
