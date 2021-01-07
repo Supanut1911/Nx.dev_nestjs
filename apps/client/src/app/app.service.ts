@@ -20,7 +20,8 @@ export class AppService {
     return { message: 'Welcome to client!' };
   }
 
-  getTest() {
+  getCoffee() {
     return this.client.send('getTest', '')
   }
+
 }
