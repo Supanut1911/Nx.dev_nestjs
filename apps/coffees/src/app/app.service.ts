@@ -25,7 +25,7 @@ let coffees: Coffee[] = [
 @Injectable()
 export class AppService {
   getData(): { message: string } {
-    return { message: 'Welcome to coffees!' };
+    return { message: 'Welcome to this coffees!' };
   }
 
   getTest() {
