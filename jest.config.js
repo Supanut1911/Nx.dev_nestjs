@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/todos',
     '<rootDir>/apps/coffees',
     '<rootDir>/apps/client',
+    '<rootDir>/libs/data',
   ],
 };
