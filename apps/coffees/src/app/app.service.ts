@@ -19,6 +19,10 @@ let coffees: Coffee[] = [
     name: "Americano",
     price: 99
   },
+  {
+    name: "Capucino",
+    price: 200
+  }
 ]
 
 @Injectable()
