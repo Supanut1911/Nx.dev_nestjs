@@ -26,4 +26,10 @@ export class CoffeeService {
   ) {
     return this.client.send('addCoffee', coffeeDto)
   }
+
+  deleteCoffee(
+    id: string
+  ) {
+    return this.client.send('deleteCoffee', id)
+  }
 }
