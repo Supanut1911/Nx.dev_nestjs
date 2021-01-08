@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Client, ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
-import { Coffee } from 'libs/data/src/lib/data';
+import { ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
+import { CoffeeDto } from 'libs/data/src/lib/coffeeDto';
 
 @Injectable()
 export class CoffeeService {
@@ -22,7 +22,7 @@ export class CoffeeService {
   }
 
   addCoffee(
-    coffeeDto: Coffee
+    coffeeDto: CoffeeDto
   ) {
     return this.client.send('addCoffee', coffeeDto)
   }

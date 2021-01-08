@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { Coffee } from '../../../../libs/data/src/lib/data';
-
+import { CoffeeDto } from '../../../../libs/data/src/lib/coffeeDto';
 import { AppService } from './app.service';
 
 @Controller()
@@ -14,7 +14,7 @@ export class AppController {
   }
   
   @MessagePattern('addCoffee')
-  addCoffee(data: Coffee) {
+  addCoffee(data: CoffeeDto) {
     return this.appService.addCoffee(data)
   }
 }
