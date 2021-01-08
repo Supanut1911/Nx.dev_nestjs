@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { RpcException } from '@nestjs/microservices';
 
 import { Coffee } from 'libs/data/src/lib/data'
 
@@ -37,9 +38,14 @@ export class AppService {
     coffee.name = name
     coffee.price = price
 
-    await coffees.push(coffee)
-    return {
-      message: "add coffee success"
+    try {
+      await coffees.push(coffee)
+
+      return {
+        message: "add coffee success"
+      }
+    } catch (error) {
+      throw new RpcException('add fail')
     }
   }
 }

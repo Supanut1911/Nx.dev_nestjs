@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CoffeeService } from '../app/services/coffee.service';
 import { TodoService } from '../app/services/todo.service';
-import { Coffee } from 'libs/data/src/lib/data';
+import { CoffeeDto } from 'libs/data/src/lib/coffeeDto';
 
 @Controller()
 export class AppController {
@@ -16,8 +16,9 @@ export class AppController {
   }
 
   @Post('/coffee')
+  @UsePipes(ValidationPipe)
   addCoffee(
-    @Body() coffeeDto: Coffee
+    @Body() coffeeDto: CoffeeDto
   ) {
     return this.coffeeService.addCoffee(coffeeDto)
   }
