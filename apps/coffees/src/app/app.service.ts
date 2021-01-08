@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
 
 import { Coffee } from 'libs/data/src/lib/data'
+import { CoffeeDto } from 'libs/data/src/lib/coffeeDto'
 
 let coffees: Coffee[] = [
   {
@@ -32,7 +33,7 @@ export class AppService {
     return coffees
   }
 
-  async addCoffee(coffeeDto: Coffee): Promise<{}> {
+  async addCoffee(coffeeDto: CoffeeDto): Promise<{}> {
     let { name, price } = coffeeDto
     let coffee = new Coffee()
     coffee.name = name
