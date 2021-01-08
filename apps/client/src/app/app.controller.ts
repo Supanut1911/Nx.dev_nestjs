@@ -1,18 +1,17 @@
 import { Controller, Get } from '@nestjs/common';
-
-import { AppService } from './app.service';
-import { TodoService } from './todo.service';
+import { CoffeeService } from '../app/services/coffee.service';
+import { TodoService } from '../app/services/todo.service';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
+    private readonly coffeeService: CoffeeService,
     private readonly todoService: TodoService
   ) {}
-  
+
   @Get('/coffee')
   getTest() {
-    return this.appService.getCoffee()
+    return this.coffeeService.getCoffee()
   }
 
   @Get('/todo')

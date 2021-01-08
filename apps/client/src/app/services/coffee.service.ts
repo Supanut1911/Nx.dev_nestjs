@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Client, ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
 
 @Injectable()
-export class AppService {
+export class CoffeeService {
 
   private client: ClientProxy
 
