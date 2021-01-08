@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Client, ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
 
 @Injectable()
-export class AppService {
+export class CoffeeService {
 
   private client: ClientProxy
 
@@ -16,11 +16,8 @@ export class AppService {
     })
   }
 
-  getData(): { message: string } {
-    return { message: 'Welcome to client!' };
+  getCoffee() {
+    return this.client.send('getCoffees', '')
   }
 
-  getTest() {
-    return this.client.send('getTest', '')
-  }
 }
