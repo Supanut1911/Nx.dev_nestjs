@@ -7,8 +7,8 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @MessagePattern('getTest')
-  getData() {
-    return this.appService.getTest();
+  @MessagePattern('getCoffees')
+  getCoffees() {
+    return this.appService.getCoffee();
   }
 }

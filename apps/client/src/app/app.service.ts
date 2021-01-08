@@ -16,12 +16,8 @@ export class AppService {
     })
   }
 
-  getData(): { message: string } {
-    return { message: 'Welcome to client!' };
-  }
-
   getCoffee() {
-    return this.client.send('getTest', '')
+    return this.client.send('getCoffees', '')
   }
 
 }

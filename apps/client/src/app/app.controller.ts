@@ -9,12 +9,7 @@ export class AppController {
     private readonly appService: AppService,
     private readonly todoService: TodoService
   ) {}
-
-  @Get()
-  getData() {
-    return this.appService.getData();
-  }
-
+  
   @Get('/coffee')
   getTest() {
     return this.appService.getCoffee()
