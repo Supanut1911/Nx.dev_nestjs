@@ -30,5 +30,17 @@ export class AppService {
   getCoffee() {
     return coffees
   }
+
+  async addCoffee(coffeeDto: Coffee): Promise<{}> {
+    let { name, price } = coffeeDto
+    let coffee = new Coffee()
+    coffee.name = name
+    coffee.price = price
+
+    await coffees.push(coffee)
+    return {
+      message: "add coffee success"
+    }
+  }
 }
 
