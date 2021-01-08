@@ -4,6 +4,7 @@ import { RpcException } from '@nestjs/microservices';
 import { Coffee } from './coffee.entity'
 import { CoffeeDto } from 'libs/data/src/lib/coffeeDto'
 import { CoffeeRepository } from './coffee.repository';
+import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
 
 @Injectable()
 export class AppService {
@@ -44,6 +45,44 @@ export class AppService {
       }
     } catch (error) {
       throw new RpcException('delete fail')
+    }
+  }
+
+  async updateCoffee(
+    payload: UpdateCoffeeDto
+  ) {
+
+    let { id, name , price} = payload
+
+    try {
+      console.log('yaaaaaaaa',id);
+      
+      let coffee = await this.coffeeRepository.findOne({ id })
+      if(!coffee) {
+        throw new RpcException('update fail')
+      }
+      // let oldName = coffee.name
+      // let oldPrice = coffee.price
+
+    //   if(name == undefined) {
+    //       coffee.name = name
+    //       await coffee.save()
+    //   }
+      
+    //   if(price == undefined) {
+    //     coffee.name = name
+    //     await coffee.save()
+    // }
+    
+    coffee.name = name
+    coffee.price = price
+
+    await coffee.save()
+    return {
+      message: 'update success'
+    }
+    } catch (error) {
+      throw new RpcException('update fail')
     }
   }
 }

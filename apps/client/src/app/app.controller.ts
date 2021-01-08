@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CoffeeService } from '../app/services/coffee.service';
 import { TodoService } from '../app/services/todo.service';
 import { CoffeeDto } from 'libs/data/src/lib/coffeeDto';
+import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
 
 @Controller()
 export class AppController {
@@ -30,6 +31,21 @@ export class AppController {
     console.log('this id:',id);
     
     return this.coffeeService.deleteCoffee(id)
+  }
+
+  @Patch('/coffee/:id')
+  updateCoffee(
+    @Param('id') id:string,
+    @Body('name') name: string,
+    @Body('price') price: number,
+  ) {
+    let payload = new UpdateCoffeeDto()
+    payload.id = id
+    payload.name = name
+    payload.price = price
+
+    
+    return this.coffeeService.updateCoffee(payload)
   }
 
   @Get('/todo')

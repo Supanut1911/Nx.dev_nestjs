@@ -3,6 +3,7 @@ import { MessagePattern } from '@nestjs/microservices';
 import { Coffee } from '../../../../libs/data/src/lib/data';
 import { CoffeeDto } from '../../../../libs/data/src/lib/coffeeDto';
 import { AppService } from './app.service';
+import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
 
 @Controller()
 export class AppController {
@@ -23,4 +24,14 @@ export class AppController {
   deleteCoffee(id: string) {
     return this.appService.deleteCoffee(id)
   }
+
+  @MessagePattern('updateCoffee')
+  updateCoffee(
+    // id:string,
+    // name:string,
+    // price:number
+    payload: UpdateCoffeeDto
+  ) {
+    return this.appService.updateCoffee(payload)
+  } 
 }
