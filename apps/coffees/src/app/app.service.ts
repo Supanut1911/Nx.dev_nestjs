@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
 // import { Coffee } from 'libs/data/src/lib/data'
 import { Coffee } from './coffee.entity'
@@ -28,9 +28,11 @@ export class AppService {
         message: "add coffee success"
       }
     } catch (error) {
-  
+
       console.log('yaaaaaaa');
-        throw new RpcException('add fail')
+        // throw new RpcException('add fail')
+        // throw new ForbiddenException()
+        return new HttpException('', HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -44,7 +46,11 @@ export class AppService {
         message: 'delete success'
       }
     } catch (error) {
-      throw new RpcException('delete fail')
+      return {
+        status: 404,
+        message: "not found id"
+      }
+      // throw new RpcException('delete fail')
     }
   }
 
@@ -55,32 +61,18 @@ export class AppService {
     let { id, name , price} = payload
 
     try {
-      console.log('yaaaaaaaa',id);
-      
       let coffee = await this.coffeeRepository.findOne({ id })
       if(!coffee) {
         throw new RpcException('update fail')
       }
-      // let oldName = coffee.name
-      // let oldPrice = coffee.price
 
-    //   if(name == undefined) {
-    //       coffee.name = name
-    //       await coffee.save()
-    //   }
-      
-    //   if(price == undefined) {
-    //     coffee.name = name
-    //     await coffee.save()
-    // }
-    
     coffee.name = name
     coffee.price = price
 
     await coffee.save()
-    return {
-      message: 'update success'
-    }
+      return {
+        message: 'update success'
+      }
     } catch (error) {
       throw new RpcException('update fail')
     }

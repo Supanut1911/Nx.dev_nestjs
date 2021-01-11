@@ -1,9 +1,11 @@
-import { Controller, Get, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { Coffee } from '../../../../libs/data/src/lib/data';
 import { CoffeeDto } from '../../../../libs/data/src/lib/coffeeDto';
 import { AppService } from './app.service';
 import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
+import { ExceptionFilter } from './exceptions/rpc-exception.filter';
+
 
 @Controller()
 export class AppController {
@@ -14,7 +16,8 @@ export class AppController {
     return this.appService.getCoffee();
   }
   
-  @UsePipes(new ValidationPipe())
+  // @UsePipes(new ValidationPipe())
+  @UseFilters(new ExceptionFilter())
   @MessagePattern('addCoffee')
   addCoffee(data: CoffeeDto) {
     return this.appService.addCoffee(data)
@@ -27,9 +30,6 @@ export class AppController {
 
   @MessagePattern('updateCoffee')
   updateCoffee(
-    // id:string,
-    // name:string,
-    // price:number
     payload: UpdateCoffeeDto
   ) {
     return this.appService.updateCoffee(payload)
