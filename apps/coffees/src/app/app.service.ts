@@ -16,8 +16,6 @@ export class AppService {
   }
 
   async getCoffeeById(id: string) {
-    console.log('tttaaa ', id);
-    
     const found  = await this.coffeeRepository.findOne( {id})
         if (!found) {
             return new HttpException('coffee_id not found', HttpStatus.NOT_FOUND)
