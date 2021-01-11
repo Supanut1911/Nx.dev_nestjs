@@ -22,6 +22,12 @@ export class CoffeeService {
     return this.client.send('getCoffees', '')
   }
 
+  getCoffeeById(
+    id: string
+  ) {
+    return this.client.send('getCoffeeById', id)
+  }
+
   addCoffee(
     coffeeDto: CoffeeDto
   ) {
