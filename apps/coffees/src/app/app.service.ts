@@ -28,11 +28,9 @@ export class AppService {
         message: "add coffee success"
       }
     } catch (error) {
-
-      console.log('yaaaaaaa');
         // throw new RpcException('add fail')
         // throw new ForbiddenException()
-        return new HttpException('', HttpStatus.BAD_REQUEST)
+        return new HttpException('add fail', HttpStatus.BAD_REQUEST)
     }
   }
 
