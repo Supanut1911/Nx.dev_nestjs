@@ -12,6 +12,13 @@ export class CoffeeController {
         return this.coffeeService.getCoffee()
     }
 
+    @Get('/:id')
+    getCoffeeById(
+        @Param('id') id:string
+    ) {
+        return this.coffeeService.getCoffeeById(id)
+    }
+
     @Post()
     addCoffee(
         @Body() coffeeDto: CoffeeDto

@@ -16,6 +16,11 @@ export class AppController {
     return this.appService.getCoffee();
   }
   
+  @MessagePattern('getCoffeeById')
+  getCoffeeById(id: string) {
+    return this.appService.getCoffeeById(id)
+  }
+
   // @UsePipes(new ValidationPipe())
   @UseFilters(new ExceptionFilter())
   @MessagePattern('addCoffee')
