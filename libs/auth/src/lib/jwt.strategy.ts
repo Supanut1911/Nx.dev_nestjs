@@ -5,6 +5,7 @@ import { Strategy, ExtractJwt } from 'passport-jwt';
 import { UserRepository } from "./user.repository";
 import { JwtPayload } from './jwt-payload.interface';
 import { User } from "./user.entity";
+import { RpcException } from "@nestjs/microservices";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -18,12 +19,17 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         })
     }
 
-    async validate(payload: JwtPayload, ): Promise<User> {
+    async validate(payload: JwtPayload, ) {
         const { username } = payload
         const user = await this.userRepository.findOne({ username })
 
         if(!user) {
-            throw new UnauthorizedException();
+            // throw new UnauthorizedException();
+            // return null
+            // throw new RpcException('unauthorize')
+            return {
+                message: 'unauthorize'
+            }
         }
 
         return user

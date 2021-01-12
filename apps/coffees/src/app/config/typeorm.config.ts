@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { User } from "../../../../../libs/auth/src/lib/user.entity";
 import { Coffee } from '../coffee.entity'
 export const typeOrmConfig: TypeOrmModuleOptions = {
     type: 'postgres',
@@ -9,8 +10,8 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     database: 'db_coffee_microservice',
     // entities: [__dirname + '../**/*.entity.{js,ts}'],
     entities: [
-        Coffee
-        
+        Coffee,
+        User
     ],
     synchronize: true
 }

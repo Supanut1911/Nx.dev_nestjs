@@ -4,11 +4,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeeRepository } from './coffee.repository';
 import { typeOrmConfig } from './config/typeorm.config';
+import { AuthModule } from 'libs/auth/src/lib/auth.module'
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([CoffeeRepository])
+    TypeOrmModule.forFeature([CoffeeRepository]),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
