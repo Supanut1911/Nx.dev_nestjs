@@ -15,7 +15,6 @@ export class TodoService {
         })
     }
 
-
   getGetTodo() {
     return this.client.send('getTodo', '')
   }
