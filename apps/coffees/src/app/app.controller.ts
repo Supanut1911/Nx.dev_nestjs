@@ -1,18 +1,20 @@
-import { Controller, Get, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, UseFilters, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { Coffee } from '../../../../libs/data/src/lib/data';
 import { CoffeeDto } from '../../../../libs/data/src/lib/coffeeDto';
 import { AppService } from './app.service';
 import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
 import { ExceptionFilter } from './exceptions/rpc-exception.filter';
-
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  // @UseGuards(AuthGuard())
   @MessagePattern('getCoffees')
   getCoffees() {
+    console.log('hayoooo');
+    
     return this.appService.getCoffee();
   }
   
