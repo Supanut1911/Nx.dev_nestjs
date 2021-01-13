@@ -5,25 +5,29 @@ import { Coffee } from './coffee.entity'
 import { CoffeeDto } from 'libs/data/src/lib/coffeeDto'
 import { CoffeeRepository } from './coffee.repository';
 import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AppService {
 
-  constructor(private coffeeRepository: CoffeeRepository) {}
+  constructor(
+    @InjectRepository(Coffee)
+    private readonly coffeeRepo: Repository<Coffee>,
+  ) {}
 
   async getCoffee() {
-    return await this.coffeeRepository.find()
+    return await this.coffeeRepo.find()
   }
 
   async getCoffeeById(id: string) {
-    const found  = await this.coffeeRepository.findOne( {id})
+    const found  = await this.coffeeRepo.findOne( {id})
         if (!found) {
             return new HttpException('coffee_id not found', HttpStatus.NOT_FOUND)
         } else {
            return found
         }
   }
-
 
   async addCoffee(coffeeDto: CoffeeDto){
     let { name, price } = coffeeDto
@@ -32,7 +36,7 @@ export class AppService {
     coffee.price = price
 
     try {
-      await coffee.save()
+      await this.coffeeRepo.save(coffee)
 
       return {
         message: "add coffee success"
@@ -46,7 +50,7 @@ export class AppService {
 
   async deleteCoffee(id: string) {
     try {
-      let result = await this.coffeeRepository.delete({ id })
+      let result = await this.coffeeRepo.delete({ id })
       if(result.affected === 0) {
         throw new RpcException('not found Coffee')
       }
@@ -69,7 +73,7 @@ export class AppService {
     let { id, name , price} = payload
 
     try {
-      let coffee = await this.coffeeRepository.findOne({ id })
+      let coffee = await this.coffeeRepo.findOne({ id })
       if(!coffee) {
         throw new RpcException('update fail')
       }
@@ -77,7 +81,7 @@ export class AppService {
     coffee.name = name
     coffee.price = price
 
-    await coffee.save()
+    await this.coffeeRepo.save(coffee)
       return {
         message: 'update success'
       }

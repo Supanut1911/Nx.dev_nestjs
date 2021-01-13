@@ -13,5 +13,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
         Coffee,
         User
     ],
-    synchronize: true
+    synchronize: false
 }
