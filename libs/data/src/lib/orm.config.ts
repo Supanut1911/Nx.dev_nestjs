@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { User } from "../../../../../libs/auth/src/lib/user.entity";
-import { Coffee } from '../coffee.entity'
+import { User } from "libs/auth/src/lib/user.entity";
+import { Coffee } from '../../../../apps/coffees/src/app/coffee.entity'
 export const typeOrmConfig: TypeOrmModuleOptions = {
     type: 'postgres',
     host: 'localhost',
