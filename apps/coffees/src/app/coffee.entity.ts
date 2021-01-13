@@ -3,7 +3,7 @@
 import { IsString } from "class-validator";
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity("coffee", { schema: "public" })
 export class Coffee extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string

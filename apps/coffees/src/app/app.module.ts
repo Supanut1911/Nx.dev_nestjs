@@ -6,11 +6,12 @@ import { CoffeeRepository } from './coffee.repository';
 // import { typeOrmConfig } from './config/typeorm.config';
 import { typeOrmConfig } from '../../../../libs/data/src/lib/orm.config'
 import { AuthModule } from 'libs/auth/src/lib/auth.module'
+import { Coffee } from './coffee.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([CoffeeRepository]),
+    TypeOrmModule.forFeature([Coffee]),
     AuthModule,
   ],
   controllers: [AppController],
