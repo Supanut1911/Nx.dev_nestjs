@@ -5,16 +5,15 @@ import { AppService } from './app.service';
 import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
 import { ExceptionFilter } from './exceptions/rpc-exception.filter';
 import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from '../../../../libs/data/src/lib/jwtAuth.guard'
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  // @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   @MessagePattern('getCoffees')
   getCoffees() {
-    console.log('hayoooo');
-    
     return this.appService.getCoffee();
   }
   

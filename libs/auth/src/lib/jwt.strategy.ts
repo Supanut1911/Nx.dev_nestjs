@@ -27,6 +27,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             // throw new UnauthorizedException();
             // return null
             // throw new RpcException('unauthorize')
+            console.log('yaaa12312312321');
+            
             return {
                 message: 'unauthorize'
             }
