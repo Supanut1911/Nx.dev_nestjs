@@ -3,7 +3,6 @@ import { RpcException } from '@nestjs/microservices';
 // import { Coffee } from 'libs/data/src/lib/data'
 import { Coffee } from './coffee.entity'
 import { CoffeeDto } from 'libs/data/src/lib/coffeeDto'
-import { CoffeeRepository } from './coffee.repository';
 import { UpdateCoffeeDto } from '../../../../libs/data/src/lib/coffeeUpdateDto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
