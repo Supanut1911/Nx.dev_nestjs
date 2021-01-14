@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ClientProxy, ClientProxyFactory, Transport } from "@nestjs/microservices";
+import { TodoDto } from 'libs/data/src/lib/todoDto'
 
 @Injectable()
 export class TodoService {
@@ -17,5 +18,11 @@ export class TodoService {
 
   getGetTodo() {
     return this.client.send('getTodo', '')
+  }
+
+  addTodo(
+    todoDto: TodoDto
+  ) {
+    return this.client.send('addTodo', todoDto)
   }
 }
