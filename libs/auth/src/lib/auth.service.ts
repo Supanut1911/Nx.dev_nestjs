@@ -4,13 +4,12 @@ import { UserRepository } from "./user.repository";
 import * as bcrypt from 'bcryptjs'
 import { JwtPayload } from "./jwt-payload.interface";
 import { JwtService } from '@nestjs/jwt';
-import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
 export class AuthService {
 
     constructor(
-        @InjectRepository(UserRepository) private userRepository: UserRepository,
+        private userRepository: UserRepository,
         private jwtService: JwtService
     ){}
     
