@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Todo } from './todo.entity';
 
 let todos = [
     {
@@ -25,7 +28,13 @@ let todos = [
 
 @Injectable()
 export class TodoService {
+
+    constructor(
+        @InjectRepository(Todo)
+        private readonly todoRepo: Repository<Todo>
+    ){}
+
     async getTodos() {
-        return todos
+        return await this.todoRepo.find()
     }
 }
