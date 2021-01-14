@@ -1,6 +1,8 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { User } from "libs/auth/src/lib/user.entity";
 import { Coffee } from '../../../../apps/coffees/src/app/coffee.entity'
+import { Todo } from '../../../../apps/todos/src/app/todo/todo.entity'
+
 export const typeOrmConfig: TypeOrmModuleOptions = {
     type: 'postgres',
     host: 'localhost',
@@ -11,7 +13,8 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     // entities: [__dirname + '../**/*.entity.{js,ts}'],
     entities: [
         Coffee,
-        User
+        User,
+        Todo
     ],
     synchronize: false
 }
